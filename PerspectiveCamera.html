@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>Three.js Perspective Camera</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 400px; height: 300px }
+		</style>
+	</head>
+	<body>
+		<script src="lib/three.js"></script>
+		<script>
+		  //add a scene
+		  var scene = new THREE.Scene();
+      
+      //-------------start-----------
+      //add a Perspective Camera
+			var camera = new THREE.PerspectiveCamera(25, 400 / 300, 1, 10);
+			camera.position.set(0, 0, 5);
+			//--------------end------------
+
+			//add a renderer
+			var renderer = new THREE.WebGLRenderer();
+
+			//add the renderer element to the DOM so it is in our page
+			document.body.appendChild( renderer.domElement );
+
+			//add a cube
+			var cube = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshBasicMaterial({
+          color: 0xff0000,
+          wireframe: true
+        })
+			);
+      scene.add(cube); 	
+
+      //render
+      renderer.render(scene, camera);
+		</script>
+	</body>
+</html>
