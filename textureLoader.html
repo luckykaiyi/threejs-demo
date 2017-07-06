@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8>
+    <title>Three.js Light</title>
+    <style>
+      body { 
+        margin: 0; 
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      canvas { 
+        width: 100%; 
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="lib/three.js"></script>
+    <script>
+      //add a scene
+      var scene = new THREE.Scene();
+  
+      //add a camara
+      var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 2000 );
+      camera.position.z = 50;
+
+      //add a renderer
+      var renderer = new THREE.WebGLRenderer();
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      document.body.appendChild( renderer.domElement );
+
+      //add a cube
+      var cube;
+      var geometry = new THREE.BoxGeometry(20, 20, 20);
+      //-----------------------------start--------------------------------
+      var loader = new THREE.TextureLoader();
+      loader.load('textures/banana.jpeg', function(texture) {
+        var material = new THREE.MeshBasicMaterial({ map: texture});
+        cube = new THREE.Mesh( geometry, material );
+        scene.add( cube );   
+        render();
+      });
+      //-----------------------------end--------------------------------  
+
+      //render
+      var render = function () {
+        requestAnimationFrame(render);
+        renderer.render(scene, camera);
+        cube.rotation.x += 0.02;
+        cube.rotation.y += 0.01;
+      };
+    </script>
+  </body>
+</html>
