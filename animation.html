@@ -41,6 +41,7 @@
           texture.repeat.set( 2, 2 );
           material = new THREE.MeshLambertMaterial( {map: texture} );  
           createRocks();
+          render();
         });
       }
 
@@ -115,7 +116,6 @@
 
       function resize() {
         camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
         renderer.setSize( window.innerWidth, window.innerHeight );
       }
 
@@ -123,8 +123,7 @@
 
       initScene();
       initLights();
-      loadRockTexture();
-      render();      
+      loadRockTexture();     
     </script>
   </body>
 </html>
